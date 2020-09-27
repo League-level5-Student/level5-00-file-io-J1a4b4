@@ -61,3 +61,6 @@ public class Serialization {
 		}
 	}
 }
+
+ 
+ //Copyright © 2020 League of Amazing Programmers and Jonas Brown

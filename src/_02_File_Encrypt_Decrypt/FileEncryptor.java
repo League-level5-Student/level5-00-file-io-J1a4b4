@@ -58,3 +58,6 @@ public class FileEncryptor {
 		return c;
 	}
 }
+
+ 
+ //Copyright © 2020 League of Amazing Programmers and Jonas Brown
