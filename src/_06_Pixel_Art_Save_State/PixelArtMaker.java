@@ -3,6 +3,11 @@ package _06_Pixel_Art_Save_State;
 import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -35,6 +40,49 @@ public class PixelArtMaker implements MouseListener{
 		window.pack();
 	}
 	
+	public void encrypt(Pixel[][] p) {
+		try {
+			FileWriter fw = new FileWriter("src/_06_Pixel_Art_Save_State/save.txt");
+			String line = "";
+			for (int i = 0; i < p.length; i++) {
+				for (int j = 0; j < p[i].length; j++) {
+					line += (p[i][j].color.getRed() + "r" + p[i][j].color.getGreen() + "g" + p[i][j].color.getBlue() + "b");
+				}
+				line += "\n";
+			}
+			fw.write(line);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void downlink() {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("src/_06_Pixel_Art_Save_State/save.txt"));
+			String line = "";
+			int lineN = 0;
+			while(line != null){
+				line = br.readLine();
+				decrypt(line, gp.pixels[lineN]);
+				lineN++;
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void decrypt(String s, Pixel[] p) {
+		
+		for (int i = 0; i < s.length(); i+=4) {
+			if (s.charAt(i+3) == 'r') {
+				
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		new PixelArtMaker().start();
 	}
@@ -47,10 +95,11 @@ public class PixelArtMaker implements MouseListener{
 	public void mousePressed(MouseEvent e) {
 		if (e.getSource().equals(csp.sButton)) {
 			
+		}else {
+			gp.setColor(csp.getSelectedColor());
+			gp.clickPixel(e.getX(), e.getY());
+			gp.repaint();
 		}
-		gp.setColor(csp.getSelectedColor());
-		gp.clickPixel(e.getX(), e.getY());
-		gp.repaint();
 	}
 
 	@Override
