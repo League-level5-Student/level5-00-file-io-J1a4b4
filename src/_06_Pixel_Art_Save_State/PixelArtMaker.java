@@ -1,5 +1,6 @@
 package _06_Pixel_Art_Save_State;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -46,7 +47,7 @@ public class PixelArtMaker implements MouseListener{
 			String line = "";
 			for (int i = 0; i < p.length; i++) {
 				for (int j = 0; j < p[i].length; j++) {
-					line += (p[i][j].color.getRed() + "r" + p[i][j].color.getGreen() + "g" + p[i][j].color.getBlue() + "b");
+					line += (p[i][j].toString());
 				}
 				line += "\n";
 			}
@@ -75,11 +76,8 @@ public class PixelArtMaker implements MouseListener{
 	}
 	
 	public void decrypt(String s, Pixel[] p) {
-		
-		for (int i = 0; i < s.length(); i+=4) {
-			if (s.charAt(i+3) == 'r') {
-				
-			}
+		for (int i = 0; i + 9 < s.length(); i+=9) {
+			p[i].color = Color.decode(s.substring(i, i+9));
 		}
 	}
 	
