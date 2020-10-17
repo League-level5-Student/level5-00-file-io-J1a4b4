@@ -131,9 +131,8 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 			FileInputStream f = new FileInputStream(new File(SAVEFILELOCATION));
 			ObjectInputStream o = new ObjectInputStream(f);
 			saveGrid = (GridPanel) o.readObject();
-			System.out.println("Loaded file " + SAVEFILELOCATION);
 		} catch (FileNotFoundException e) {
-			System.out.println("Previous save file not found.");
+			JOptionPane.showMessageDialog(null, "Previous save file not found.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
