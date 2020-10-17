@@ -24,8 +24,6 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 	private JSlider gSlider;
 	private JSlider bSlider;
 	
-	public JButton sButton;
-	
 	private Color color;
 	
 	private int r = 0;
@@ -40,8 +38,6 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 		gSlider = new JSlider(JSlider.VERTICAL);
 		bSlider = new JSlider(JSlider.VERTICAL);
 		
-		sButton = new JButton();
-		
 		rSlider.setMinimum(0);
 		rSlider.setMaximum(MAX_COLOR - 1);
 		rSlider.setValue(0);
@@ -52,13 +48,9 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 		bSlider.setMaximum(MAX_COLOR - 1);
 		bSlider.setValue(0);
 		
-		sButton.setText("Save");
-		
 		rSlider.addChangeListener(this);
 		gSlider.addChangeListener(this);
 		bSlider.addChangeListener(this);
-		
-		sButton.addMouseListener(this);
 		
 		addMouseListener(this);
 		
